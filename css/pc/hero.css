@@ -1,0 +1,440 @@
+/* Hero Section — image: 2048 × 953 */
+/* Removed flash duration */
+
+.hero {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hold all hero entrance animations until the intro curtain lifts,
+   so the hero plays its intro right after the preloader. */
+body.intro-active .hero *,
+body.intro-active .hero {
+    animation-play-state: paused !important;
+}
+
+.hero-img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(
+        180deg,
+        rgba(20, 24, 35, 0.22) 0%,
+        rgba(20, 24, 35, 0.06) 55%,
+        transparent 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Bucket on stone terrace */
+.hero-bucket-wrap {
+    position: absolute;
+    left: 58%;
+    bottom: 6%;
+    z-index: 3;
+    pointer-events: none;
+    transform: translate3d(-50%, 0, 0);
+    animation: bucketFadeIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+@keyframes bucketFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(-50%, 40px, 0) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(-50%, 0, 0) scale(1);
+    }
+}
+
+/* Removed flash wrap before element */
+
+.hero-bucket {
+    display: block;
+    width: clamp(320px, 42vw, 580px);
+    height: auto;
+    max-height: 78vh;
+    object-fit: contain;
+    object-position: bottom center;
+    opacity: 1;
+    filter: drop-shadow(0 24px 56px rgba(0, 0, 0, 0.4));
+    mix-blend-mode: screen;
+}
+
+.hero-side-wrap {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    pointer-events: none;
+    animation: sideFadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+}
+
+@keyframes sideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(40px, 10px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.hero-side {
+    display: block;
+    width: clamp(200px, 25vw, 400px);
+    height: auto;
+    max-height: 40vh;
+    object-fit: contain;
+    object-position: bottom right;
+}
+
+/* Hero Content (Text & Buttons) */
+.hero-content {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    max-width: 600px;
+    padding-right: 20px;
+}
+
+
+.hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.hero-text {
+    font-size: 1rem;
+    color: #122136;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+
+.type-line-1,
+.type-line-2 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    vertical-align: top;
+}
+
+.type-line-1 {
+    animation: typeReveal 2s steps(43, end) both;
+    animation-delay: 1.5s;
+    max-width: 43ch;
+}
+
+.type-line-2 {
+    animation: typeReveal 1.8s steps(38, end) both;
+    animation-delay: 3.6s;
+    max-width: 38ch;
+}
+
+@keyframes typeReveal {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.hero-features {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: textFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 2.2s; /* Shows up after buttons */
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+    color: #FFF6E6;
+    animation: featureShine 3.5s ease-in-out infinite;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Left-to-right shine sweep: each icon flashes slightly after the previous one */
+.feature-item:nth-child(1) .feature-icon { animation-delay: 0s; }
+.feature-item:nth-child(3) .feature-icon { animation-delay: 0.25s; }
+.feature-item:nth-child(5) .feature-icon { animation-delay: 0.5s; }
+.feature-item:nth-child(7) .feature-icon { animation-delay: 0.75s; }
+
+.feature-item:hover .feature-icon {
+    transform: scale(1.12);
+    text-shadow: 0 0 10px rgba(255, 246, 230, 0.9), 0 0 20px rgba(255, 224, 178, 0.5);
+}
+
+@keyframes featureShine {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(255, 246, 230, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(255, 246, 230, 0.85),
+                     0 0 20px rgba(255, 224, 178, 0.5);
+    }
+}
+
+.feature-text {
+    font-size: 0.85rem;
+    color: #000000;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.feature-divider {
+    width: 1px;
+    height: 32px;
+    background-color: rgba(18, 33, 54, 0.2);
+}
+
+
+
+.hero-title {
+    animation: typingWipe 1.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: 0.6s;
+}
+
+.hero-buttons {
+    transform: translateY(20px);
+    animation: textFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 1.8s;
+}
+
+@keyframes typingWipe {
+    0% {
+        -webkit-clip-path: inset(0 100% 0 0);
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+@keyframes textFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.btn-hero-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #c49a62;
+    color: #111;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-hero-primary:hover {
+    background-color: #d4aa72;
+    transform: scale(1.05);
+}
+
+.btn-hero-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    color: #111;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-hero-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.btn-play-icon {
+    color: #c49a62;
+    font-size: 1.1rem;
+}
+
+/* ===== VISUALIZE YOUR SPACE — floating compact card in hero top-right (desktop) ===== */
+.visualize-section {
+    position: relative;
+    z-index: 5;
+    /* pull the section up so the card sits in the hero's bottom-right corner */
+    margin-top: -280px;
+    margin-bottom: 40px;
+    padding: 0 2px 0 0;
+    pointer-events: none; /* let hero stay interactive; card re-enables below */
+}
+
+.visualize-container {
+    pointer-events: auto;
+    width: 320px;
+    max-width: 30vw;
+    margin-left: auto;          /* push card to the right */
+    background-color: rgba(253, 250, 245, 0.96);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(196, 154, 98, 0.25);
+    border-radius: 18px;
+    padding: 16px 0 14px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+}
+
+.visualize-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.1;
+    margin: 0 0 8px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.visualize-divider {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: #c49a62;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.visualize-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background-color: #c49a62;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.visualize-subtitle {
+    font-size: 0.78rem;
+    color: #122136;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 16px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Auto-sliding marquee */
+.visualize-grid {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px;
+    width: max-content;
+    animation: visualizeSlide 50s linear infinite;
+}
+
+.visualize-grid:hover {
+    animation-play-state: paused;
+}
+
+@keyframes visualizeSlide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.visualize-card {
+    flex: 0 0 100px;
+    background-color: #ffffff;
+    border-radius: 11px;
+    overflow: hidden;
+    padding: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.visualize-img {
+    width: 100%;
+    height: 72px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.visualize-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.visualize-label {
+    display: block;
+    font-size: 0.6rem;
+    color: #122136;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.25;
+    padding: 7px 2px 1px;
+}
+
+.visualize-note {
+    font-size: 0.62rem;
+    color: #777;
+    line-height: 1.4;
+    text-align: center;
+    margin: 14px auto 0;
+    padding: 0 20px;
+}

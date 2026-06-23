@@ -1,0 +1,319 @@
+/* ══════════════════════════════════════
+   EVENT PAGE — magazine style
+══════════════════════════════════════ */
+.event-page-section {
+    padding: 50px 0 80px;
+    background: #f2ede4;
+    zoom: 0.85;
+}
+
+.event-page-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+/* ── Header ── */
+.event-cat-header {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 44px;
+}
+
+.event-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #cba258;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: eventHeadIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.event-eyebrow::before,
+.event-eyebrow::after {
+    content: '';
+    width: 18px; height: 1px;
+    background: #cba258;
+}
+
+.event-cat-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+    font-weight: 800;
+    color: #0a0f1e;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: eventHeadIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.08s forwards;
+}
+
+.event-cat-sub {
+    font-size: 0.94rem;
+    color: #5a6478;
+    line-height: 1.65;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: eventHeadIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.16s forwards;
+}
+
+@keyframes eventHeadIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   GRID & CARDS
+══════════════════════════════════════ */
+.event-page-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+}
+
+.event-page-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border-radius: 18px;
+    overflow: visible;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    perspective: 1200px;
+    box-shadow:
+        0 1px 2px rgba(20,15,5,0.05),
+        0 4px 8px rgba(20,15,5,0.05),
+        0 10px 22px rgba(20,15,5,0.06);
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: eventCardIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    animation-delay: calc(var(--i) * 0.09s + 0.2s);
+    will-change: transform;
+}
+
+@keyframes eventCardIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.event-page-card:hover {
+    transform: translateY(-10px) rotateX(2.5deg) scale(1.015);
+    box-shadow:
+        0 2px 4px rgba(20,15,5,0.04),
+        0 10px 22px rgba(20,15,5,0.08),
+        0 26px 50px rgba(20,15,5,0.14),
+        0 0 0 1.5px rgba(203,162,88,0.55);
+}
+
+/* inner sheen on hover */
+.event-page-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: linear-gradient(135deg,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.02) 100%);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.event-page-card:hover::after { opacity: 1; }
+
+/* ── Image / banner zone ── */
+.event-page-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+    background: linear-gradient(160deg, #efe9dd 0%, #e3dccc 100%);
+}
+
+.event-page-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 14px;
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.event-page-card:hover .event-page-img {
+    transform: scale(1.06);
+}
+
+/* dark gradient at bottom of image for chip legibility */
+.event-page-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,3,0.4) 0%, rgba(10,8,3,0) 55%);
+    pointer-events: none;
+}
+
+.event-card-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.92);
+    color: #8a5c10;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+}
+.event-card-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #cba258;
+    animation: badgePulse 1.6s ease-in-out infinite;
+}
+@keyframes badgePulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.5); }
+}
+
+
+/* ── Card body ── */
+.event-page-card-body {
+    padding: 20px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    text-align: center;
+}
+
+.event-page-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.event-page-date,
+.event-page-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 5px 12px 5px 7px;
+    border-radius: 50px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.event-page-date {
+    color: #2456a8;
+    background: linear-gradient(135deg, rgba(58,107,201,0.14), rgba(58,107,201,0.05));
+    border: 1px solid rgba(58,107,201,0.35);
+}
+.event-page-location {
+    color: #1d7a5f;
+    background: linear-gradient(135deg, rgba(31,163,121,0.14), rgba(31,163,121,0.05));
+    border: 1px solid rgba(31,163,121,0.35);
+}
+
+.event-page-card:hover .event-page-date,
+.event-page-card:hover .event-page-location {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+}
+.event-page-card:hover .event-page-date {
+    background: linear-gradient(135deg, rgba(58,107,201,0.22), rgba(58,107,201,0.08));
+}
+.event-page-card:hover .event-page-location {
+    background: linear-gradient(135deg, rgba(31,163,121,0.22), rgba(31,163,121,0.08));
+}
+
+.event-page-date i,
+.event-page-location i {
+    font-size: 0.64rem;
+    width: 16px; height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    flex-shrink: 0;
+}
+.event-page-date i { background: linear-gradient(135deg, #4f8ef7, #2456a8); }
+.event-page-location i { background: linear-gradient(135deg, #2dd4a7, #1d7a5f); }
+
+.event-page-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #0a0f1e !important;
+    margin-bottom: 10px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    transition: color 0.3s ease;
+}
+.event-page-card:hover .event-page-card-title {
+    color: #8a5c10 !important;
+}
+
+.event-page-card-desc {
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.68;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* ── CTA button — colorful, centered, compact ── */
+.event-page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 150px;
+    background: var(--theme-color);
+    color: #fff !important;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.2px;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: auto;
+    align-self: center;
+    position: relative;
+    z-index: 10;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--theme-color) 40%, transparent);
+}
+
+.event-page-card:hover .event-page-link {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--theme-color) 55%, transparent);
+    filter: brightness(1.08);
+}

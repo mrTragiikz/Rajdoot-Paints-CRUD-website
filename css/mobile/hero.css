@@ -1,0 +1,567 @@
+/* css/mobile/hero.css */
+/* Loaded only at <= 1024px via <link media>, so no @media wrapper needed. */
+
+.hero {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hold hero entrance animations until the intro curtain lifts */
+body.intro-active .hero *,
+body.intro-active .hero {
+    animation-play-state: paused !important;
+}
+
+/* Background photo — tall portrait crop so sky + mountains show */
+.hero-img {
+    display: block;
+    width: 100%;
+    height: 88vh;
+    height: 88svh;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+/* Soft gradient at the very top (under the navbar) */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+        180deg,
+        rgba(20, 24, 35, 0.18) 0%,
+        rgba(20, 24, 35, 0.04) 60%,
+        transparent 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Text block — top-left, not vertically centered like desktop */
+.hero-content {
+    position: absolute;
+    left: 0;
+    top: 16%;
+    transform: none;
+    z-index: 5;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 24px;
+    line-height: normal;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
+    /* same intro as PC: typing wipe reveal */
+    animation: typingWipe 1.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: 0.6s;
+}
+
+.hero-text {
+    font-size: 1rem;
+    color: #122136;
+    font-weight: 500;
+    line-height: 1.45;
+    margin: 0 0 28px;
+}
+
+/* Subtitle typing reveal — same as PC */
+.type-line-1,
+.type-line-2 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    vertical-align: top;
+}
+
+.type-line-1 {
+    animation: typeReveal 2s steps(43, end) both;
+    animation-delay: 1.5s;
+    max-width: 43ch;
+}
+
+.type-line-2 {
+    animation: typeReveal 1.8s steps(38, end) both;
+    animation-delay: 3.6s;
+    max-width: 38ch;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    /* same intro as PC: fade up */
+    transform: translateY(20px);
+    animation: textFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 1.8s;
+}
+
+.btn-hero-primary,
+.btn-hero-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 22px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.btn-hero-primary {
+    background-color: #c49a62;
+    color: #111;
+}
+
+.btn-hero-secondary {
+    background-color: #ffffff;
+    color: #111;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.btn-play-icon {
+    color: #c49a62;
+    font-size: 1.05rem;
+}
+
+/* Paint bucket — centered, large, resting on the terrace near the bottom */
+.hero-bucket-wrap {
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translate3d(-50%, 0, 0);
+    z-index: 3;
+    pointer-events: none;
+    /* same intro as PC: fade in + rise + scale */
+    animation: bucketFadeIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.hero-bucket {
+    display: block;
+    width: clamp(280px, 70vw, 420px);
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.35));
+    mix-blend-mode: screen;
+}
+
+/* Side balcony asset not shown separately on mobile */
+.hero-side-wrap {
+    display: none;
+}
+
+/* Feature row — pushed BELOW the photo into a light bar (per image) */
+.hero-features {
+    position: static;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%;
+    padding: 22px 16px;
+    background-color: transparent;
+    line-height: normal;
+    /* same intro as PC: fade up, after buttons */
+    animation: textFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 2.2s;
+}
+
+.feature-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 0 4px;
+}
+
+.feature-icon {
+    font-size: 1.6rem;
+    color: #FFF6E6;
+    animation: featureShine 3.5s ease-in-out infinite;
+}
+
+.feature-item:nth-child(1) .feature-icon { animation-delay: 0s; }
+.feature-item:nth-child(3) .feature-icon { animation-delay: 0.25s; }
+.feature-item:nth-child(5) .feature-icon { animation-delay: 0.5s; }
+.feature-item:nth-child(7) .feature-icon { animation-delay: 0.75s; }
+
+@keyframes featureShine {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(255, 246, 230, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(255, 246, 230, 0.85),
+                     0 0 20px rgba(255, 224, 178, 0.5);
+    }
+}
+
+.feature-text {
+    font-size: 0.72rem;
+    color: #000000;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.feature-divider {
+    width: 1px;
+    align-self: stretch;
+    background-color: rgba(18, 33, 54, 0.12);
+}
+
+/* ---------------- Hero intro animations (same as PC) ---------------- */
+
+@keyframes bucketFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(-50%, 40px, 0) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(-50%, 0, 0) scale(1);
+    }
+}
+
+@keyframes typingWipe {
+    0% {
+        -webkit-clip-path: inset(0 100% 0 0);
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+@keyframes typeReveal {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+@keyframes textFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------- Visualize Your Space ---------------- */
+
+.visualize-section {
+    background-color: #fdfaf5;
+    padding: 8px 0 32px;
+}
+
+/* Scroll-reveal: hidden start state, revealed when .in-view is added */
+.visualize-title,
+.visualize-divider,
+.visualize-subtitle,
+.visualize-card,
+.visualize-note {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visualize-section.in-view .visualize-title,
+.visualize-section.in-view .visualize-divider,
+.visualize-section.in-view .visualize-subtitle,
+.visualize-section.in-view .visualize-card,
+.visualize-section.in-view .visualize-note {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger */
+.visualize-section.in-view .visualize-title    { transition-delay: 0.05s; }
+.visualize-section.in-view .visualize-divider  { transition-delay: 0.15s; }
+.visualize-section.in-view .visualize-subtitle { transition-delay: 0.25s; }
+.visualize-section.in-view .visualize-card:nth-child(1) { transition-delay: 0.40s; }
+.visualize-section.in-view .visualize-card:nth-child(2) { transition-delay: 0.52s; }
+.visualize-section.in-view .visualize-card:nth-child(3) { transition-delay: 0.64s; }
+.visualize-section.in-view .visualize-note     { transition-delay: 0.78s; }
+
+.visualize-container {
+    background-color: #faf4ea;
+    border-radius: 28px;
+    padding: 32px 0 28px;
+    margin: 0 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.visualize-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    padding: 0 24px;
+}
+
+.visualize-divider {
+    display: block;
+    width: 46px;
+    height: 1px;
+    background-color: #c49a62;
+    margin: 0 24px 16px;
+    position: relative;
+}
+
+.visualize-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background-color: #c49a62;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.visualize-subtitle {
+    font-size: 1rem;
+    color: #122136;
+    font-weight: 500;
+    line-height: 1.45;
+    margin: 0 0 22px;
+    padding: 0 24px;
+}
+
+/* 3 equal cards fitting the row */
+/* Auto-sliding marquee (mobile only) */
+.visualize-grid {
+    display: flex;
+    gap: 10px;
+    padding: 0 24px;
+    width: max-content;
+    will-change: transform;
+    cursor: grab;
+}
+
+.visualize-grid.dragging {
+    cursor: grabbing;
+}
+
+.visualize-container {
+    overflow: hidden;
+}
+
+.visualize-card {
+    flex: 0 0 calc((100vw - 48px - 20px) / 3);
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.visualize-img {
+    width: 100%;
+    height: 130px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.visualize-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.visualize-label {
+    display: block;
+    font-size: 0.68rem;
+    color: #122136;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+    padding: 10px 4px;
+}
+
+.visualize-note {
+    font-size: 0.78rem;
+    color: #777;
+    line-height: 1.45;
+    text-align: center;
+    margin: 20px 0 0;
+    padding: 0 24px;
+}
+
+.visualize-card {
+    cursor: pointer;
+}
+
+/* ---------------- Visualize Card Modal (centered) ---------------- */
+.visualize-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 22, 0.78);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.visualize-modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.visualize-modal {
+    width: 100%;
+    max-width: 380px;
+    background: #fffefb;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(18px) scale(0.96);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    max-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+.visualize-modal-overlay.open .visualize-modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.visualize-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0c182c;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.visualize-modal-close:active {
+    transform: scale(0.9);
+}
+
+/* image stays fully clear — no overlay, no gradient, no scrim */
+.visualize-modal-img {
+    width: 100%;
+    height: 230px;
+    flex-shrink: 0;
+}
+
+.visualize-modal-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.visualize-modal-body {
+    padding: 20px 22px 24px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.visualize-modal-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.visualize-modal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #a3793f;
+    background: rgba(196, 154, 98, 0.14);
+    padding: 5px 10px;
+    border-radius: 100px;
+}
+
+.visualize-modal-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+}
+
+.visualize-modal-label {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.3;
+    margin: 0 0 12px;
+    letter-spacing: 0.2px;
+}
+
+.visualize-modal-divider {
+    width: 32px;
+    height: 2px;
+    background: #c49a62;
+    margin: 0 0 14px;
+    border-radius: 2px;
+}
+
+.visualize-modal-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 400;
+    color: #5e5e5e;
+    line-height: 1.65;
+    letter-spacing: 0.1px;
+    margin: 0;
+}

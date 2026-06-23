@@ -1,0 +1,441 @@
+/* css/mobile/family-banner.css */
+
+/* ===== FAMILY BANNER SECTION ===== */
+.family-banner-section {
+    padding: 48px 0 0 0;
+    background: #faf5eb;
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+}
+
+.fb-wrapper { width: 100%; position: relative; }
+
+.fb-container {
+    background: transparent;
+    border-radius: 0;
+    padding: 0 16px;
+    box-shadow: none;
+}
+
+.fb-content-wrap { display: flex; flex-direction: column; gap: 0; }
+.family-banner-section.reverse .fb-content-wrap { flex-direction: column; }
+
+/* ══════════════════════════════════════
+   IMAGE — pan right→left loop
+══════════════════════════════════════ */
+.fb-left-col {
+    width: 100%;
+    position: relative;
+}
+
+/* clipping window */
+.fb-img-pan-wrap {
+    width: 100%;
+    height: auto;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.08),
+        0 8px 20px rgba(0,0,0,0.12),
+        0 24px 48px rgba(0,0,0,0.10);
+    opacity: 0;
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* directional entry classes */
+.fb-from-right { transform: translateX(60px); }
+.fb-from-left  { transform: translateX(-60px); }
+.fb-from-bottom { transform: translateY(30px); }
+
+.fb-img-pan-wrap.fb-visible,
+.fb-logo-wrap.fb-visible,
+.fb-title.fb-visible,
+.fb-desc.fb-visible,
+.fb-features-marquee-wrap.fb-visible,
+.fb-explore-btn.fb-visible,
+.fb-bottom-bar.fb-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* full image — no crop, no pan */
+.fb-img-pan {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+
+/* ambient glow underneath */
+.fb-left-col::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 10%;
+    width: 80%;
+    height: 24px;
+    background: rgba(74,32,99,0.16);
+    filter: blur(14px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* ══════════════════════════════════════
+   RIGHT COL
+══════════════════════════════════════ */
+.fb-right-col {
+    padding: 26px 2px 0 2px;
+}
+.family-banner-section.reverse .fb-right-col { padding-left: 2px; }
+
+/* ── Logo row ── */
+.fb-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    opacity: 0;
+    transition: opacity 0.85s ease 0.1s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.1s;
+}
+
+.fb-logo { height: 28px; }
+
+.fb-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    color: #4A2063;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* ── Title ── */
+.fb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+    line-height: 1.15;
+    color: #0A2342;
+    margin-bottom: 10px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.85s ease 0.22s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.22s;
+}
+.fb-title span { color: #4A2063; }
+
+/* ── Desc ── */
+.fb-desc {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.85s ease 0.34s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.34s;
+}
+
+/* ══════════════════════════════════════
+   FEATURE ICONS — scrolling marquee
+══════════════════════════════════════ */
+.fb-features-marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 22px;
+    opacity: 0;
+    transition: opacity 0.85s ease 0.46s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.46s;
+    /* soft fade at both edges — no hard cut */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.fb-features-marquee-wrap.fb-visible { opacity: 1; transform: translateY(0); }
+
+.fb-features-grid {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    padding: 6px 0;
+}
+
+.fb-features-grid.fb-features-marquee {
+    animation: fbFeatScroll 16s linear infinite;
+}
+
+@keyframes fbFeatScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.fb-feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
+    flex-shrink: 0;
+    width: 82px;
+}
+
+.fb-icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #B98B2C;
+    position: relative;
+
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.06),
+        0 6px 16px rgba(185,139,44,0.10),
+        0 1px 0 rgba(255,255,255,1) inset;
+
+}
+
+
+.fb-feature-text {
+    font-size: 0.6rem;
+    color: #0A2342;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* ══════════════════════════════════════
+   CTA BUTTON — glowing
+══════════════════════════════════════ */
+.fb-explore-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #5a2878 0%, #311444 100%);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.4px;
+    position: relative;
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 10px rgba(74,32,99,0.25),
+        0 10px 28px rgba(74,32,99,0.30),
+        0 1px 0 rgba(255,255,255,0.18) inset;
+
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.85s ease 0.58s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.58s;
+}
+
+
+/* ══════════════════════════════════════
+   BOTTOM INFO BAR — marquee
+══════════════════════════════════════ */
+.fb-bottom-bar {
+    margin-top: 28px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06);
+    padding: 4px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.85s ease 0.7s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.7s;
+}
+
+.fb-bottom-track {
+    display: flex;
+    gap: 6px;
+    width: max-content;
+    animation: fbBarScroll 18s linear infinite;
+}
+
+@keyframes fbBarScroll {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+}
+
+.fb-b-divider { display: none; }
+
+.fb-bottom-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 14px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.fb-b-icon {
+    font-size: 1.1rem;
+    color: #4A2063;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #fdf8f0, #f0e8f8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(74,32,99,0.12), 0 1px 0 rgba(255,255,255,0.9) inset;
+}
+
+.fb-b-text { display: flex; flex-direction: column; }
+
+.fb-b-text strong {
+    font-size: 0.68rem;
+    color: #0A2342;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.fb-b-text span {
+    font-size: 0.58rem;
+    color: #888;
+    line-height: 1.3;
+}
+
+/* ===== TRUCK SCENE — mobile ===== */
+.truck-scene {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    margin-top: 28px;
+    background: linear-gradient(180deg, #f0ebe0 0%, #e8e1d4 100%);
+    overflow: hidden;
+}
+
+/* Sky gradient feel */
+.truck-scene::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #dff0fb 0%, #f0ebe0 55%);
+    pointer-events: none;
+}
+
+.ts-road {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 28px;
+    background: linear-gradient(180deg, #b5ac99 0%, #a09890 100%);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.10);
+}
+
+.ts-marks {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: repeating-linear-gradient(
+        to right,
+        rgba(255,255,255,0.6) 0, rgba(255,255,255,0.6) 36px,
+        transparent 36px, transparent 72px
+    );
+    /* road is static — no animation */
+}
+
+.ts-truck-wrap {
+    position: absolute;
+    bottom: 24px;
+    will-change: transform;
+    animation: ts-drive-mobile 10s linear infinite;
+}
+
+/* Wheel spoke rotation — clockwise (truck moves left→right) */
+.ts-spokes-front {
+    transform-origin: 520px 152px;
+    animation: ts-wheel-spin 0.7s linear infinite;
+}
+.ts-spokes-rear1 {
+    transform-origin: 87px 152px;
+    animation: ts-wheel-spin 0.7s linear infinite;
+}
+.ts-spokes-rear2 {
+    transform-origin: 134px 152px;
+    animation: ts-wheel-spin 0.7s linear infinite;
+}
+
+@keyframes ts-wheel-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes ts-drive-mobile {
+    from { transform: translateX(-380px); }
+    to   { transform: translateX(calc(100vw + 60px)); }
+}
+
+.ts-svg {
+    width: 340px;
+    height: auto;
+    display: block;
+    filter:
+        drop-shadow(0 4px 10px rgba(0,0,0,0.14))
+        drop-shadow(0 1px 3px rgba(0,0,0,0.08));
+}
+
+
+/* ===== LOCATION TICKER — mobile ===== */
+.loc-ticker-wrap {
+    width: 100%;
+    background: linear-gradient(90deg, #060f1e 0%, #0d1b35 50%, #060f1e 100%);
+    overflow: hidden;
+    padding: 9px 0;
+    border-top: 1px solid rgba(196,149,83,0.25);
+    border-bottom: 1px solid rgba(196,149,83,0.12);
+}
+
+.loc-ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: max-content;
+    animation: loc-scroll 14s linear infinite;
+}
+
+@keyframes loc-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.loc-tick-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #e8e0d4;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.loc-tick-item i {
+    color: #c49553;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.loc-tick-sep {
+    color: rgba(196,149,83,0.5);
+    font-size: 0.9rem;
+    font-weight: 700;
+}

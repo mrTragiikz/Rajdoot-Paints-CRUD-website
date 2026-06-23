@@ -1,0 +1,378 @@
+/* css/mobile/product-detail.css */
+
+.pd-page {
+    background: #f2ede4 !important;
+    min-height: 100vh;
+    padding: 0 0 60px;
+}
+
+/* ── Breadcrumb ── */
+.pd-breadcrumb {
+    padding: 10px 16px !important;
+    background: color-mix(in srgb, var(--theme-color) 5%, #f2ede4) !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--theme-color) 12%, transparent) !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    display: block !important;
+}
+.pd-breadcrumb::-webkit-scrollbar { display: none; }
+
+.pd-breadcrumb-inner {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    width: max-content !important;
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+.pd-breadcrumb a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 0.62rem !important;
+    font-weight: 700 !important;
+    padding: 4px 9px 4px 7px !important;
+    border-radius: 7px !important;
+    white-space: nowrap !important;
+    background: color-mix(in srgb, var(--theme-color) 10%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--theme-color) 22%, transparent) !important;
+    color: var(--theme-color) !important;
+    text-decoration: none !important;
+}
+.pd-breadcrumb a i { font-size: 0.7rem !important; }
+
+.pd-breadcrumb-sep {
+    display: inline-flex !important;
+    align-items: center !important;
+    color: color-mix(in srgb, var(--theme-color) 35%, #94a3b8) !important;
+    font-size: 0.58rem !important;
+    padding: 0 1px !important;
+}
+
+.pd-breadcrumb-mid {
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 0.62rem !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    background: rgba(255,255,255,0.7) !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 4px 9px !important;
+    border-radius: 7px !important;
+    white-space: nowrap !important;
+}
+
+.pd-breadcrumb-current {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    font-size: 0.62rem !important;
+    font-weight: 800 !important;
+    color: #0a0f1e !important;
+    background: #ffffff !important;
+    border: 1px solid #e0dbd2 !important;
+    padding: 4px 9px !important;
+    border-radius: 7px !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06) !important;
+    white-space: nowrap !important;
+}
+
+/* ── Hero — stacked card layout ── */
+.pd-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: unset !important;
+    gap: 14px !important;
+    padding: 16px 14px 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    align-items: stretch !important;
+    min-height: unset !important;
+}
+
+/* ── Image card ── */
+.pd-img-side {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 32px 24px !important;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    margin: 0 !important;
+    position: relative !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08) !important;
+    min-height: 220px !important;
+    overflow: hidden !important;
+}
+.pd-img-glow, .pd-img-rings, .pd-ring { display: none !important; }
+
+.pd-badge {
+    top: 14px !important;
+    left: 14px !important;
+    font-size: 0.58rem !important;
+    padding: 4px 12px !important;
+    border-radius: 50px !important;
+}
+
+.pd-product-img {
+    width: 55% !important;
+    max-width: 200px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.18)) !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* ── Info card ── */
+.pd-info-side {
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 18px 14px 0 14px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+}
+
+/* Category pill */
+.pd-category {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    font-size: 0.58rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: var(--theme-color) !important;
+    background: color-mix(in srgb, var(--theme-color) 10%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--theme-color) 25%, transparent) !important;
+    padding: 5px 12px !important;
+    border-radius: 50px !important;
+    margin-bottom: 12px !important;
+    width: fit-content !important;
+}
+
+.pd-category-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: var(--theme-color) !important;
+    flex-shrink: 0 !important;
+}
+
+/* Title */
+.pd-title {
+    font-size: clamp(1.35rem, 6.5vw, 1.8rem) !important;
+    font-weight: 800 !important;
+    color: #0a0f1e !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 14px !important;
+    padding-bottom: 14px !important;
+    position: relative !important;
+}
+.pd-title::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 3px !important;
+    width: 50px !important;
+    background: linear-gradient(90deg, var(--theme-color), color-mix(in srgb, var(--theme-color) 40%, transparent)) !important;
+    border-radius: 4px !important;
+}
+
+/* Description */
+.pd-desc {
+    font-size: 0.84rem !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 8px !important;
+    color: #1e293b !important;
+}
+
+.pd-long-desc {
+    font-size: 0.76rem !important;
+    color: #64748b !important;
+    line-height: 1.72 !important;
+    margin-bottom: 20px !important;
+}
+
+/* ── Specs table ── */
+.pd-specs {
+    background: #fafaf8 !important;
+    border-radius: 12px !important;
+    border: 1px solid #e8e2d8 !important;
+    overflow: hidden !important;
+    margin-bottom: 18px !important;
+    box-shadow: none !important;
+}
+.pd-spec-row {
+    padding: 10px 14px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid #f0ece4 !important;
+}
+.pd-spec-row:last-child { border-bottom: none !important; }
+.pd-spec-row::before { display: none !important; }
+.pd-spec-label {
+    font-size: 0.66rem !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+.pd-spec-value {
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    color: #0a0f1e !important;
+    background: #f1f5f9 !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* ── Pack sizes ── */
+.pd-pack-sizes { margin-bottom: 20px !important; }
+.pd-pack-label {
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    margin-bottom: 8px !important;
+}
+.pd-pack-list {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+}
+.pd-pack-item {
+    padding: 7px 16px !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    background: #fff !important;
+    color: #0a0f1e !important;
+}
+
+/* ── CTA buttons — full width stacked ── */
+.pd-cta-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+.pd-btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.86rem !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 14px 28px !important;
+    border-radius: 50px !important;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--theme-color) 85%, #000) 0%,
+        var(--theme-color) 60%,
+        color-mix(in srgb, var(--theme-color) 70%, #fff) 100%) !important;
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--theme-color) 40%, transparent) !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.pd-btn-ghost {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.86rem !important;
+    color: var(--theme-color) !important;
+    text-decoration: none !important;
+    padding: 12px 22px !important;
+    border-radius: 50px !important;
+    border: 2px solid color-mix(in srgb, var(--theme-color) 60%, transparent) !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.pd-btn-ghost span { position: relative !important; z-index: 1 !important; }
+
+/* ── Features section ── */
+.pd-features-section {
+    max-width: 100% !important;
+    margin: 14px 0 0 !important;
+    padding: 0 0 0 14px !important;
+    overflow: hidden !important;
+}
+
+.pd-features-heading {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    color: #0a0f1e !important;
+    margin-bottom: 14px !important;
+    padding-bottom: 12px !important;
+    padding-right: 14px !important;
+}
+
+.pd-features-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: unset !important;
+    gap: 0 !important;
+    width: max-content !important;
+    animation: pdFeatScroll 18s linear infinite !important;
+}
+
+@keyframes pdFeatScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.pd-feature-card {
+    flex: none !important;
+    width: 150px !important;
+    padding: 16px 12px !important;
+    margin-right: 10px !important;
+    border-radius: 14px !important;
+    text-align: center !important;
+    background: #fff !important;
+    border: 1px solid #e8e2d8 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+}
+.pd-feature-card::before { display: none !important; }
+.pd-feature-icon-wrap {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 11px !important;
+    margin: 0 auto 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: color-mix(in srgb, var(--icon-color, var(--theme-color)) 12%, #fff) !important;
+}
+.pd-feature-icon-wrap i { font-size: 1.1rem !important; }
+.pd-feature-title {
+    font-size: 0.76rem !important;
+    font-weight: 800 !important;
+    color: #0a0f1e !important;
+    margin-bottom: 4px !important;
+}
+.pd-feature-desc {
+    font-size: 0.64rem !important;
+    color: #64748b !important;
+    line-height: 1.5 !important;
+}

@@ -1,0 +1,497 @@
+/* css/mobile/products.css — mobile (<= 1024px) styles for products + quick links */
+
+.products-section {
+    padding: 44px 0 0 0;
+    background-color: #faf5eb;
+    overflow: hidden;
+}
+
+.products-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+/* ===== Header: stack vertically, left-aligned ===== */
+.products-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.section-subtitle {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #c49553;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.golden-dot {
+    color: #c49553;
+}
+
+.products-header-right {
+    width: 100%;
+    max-width: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.section-desc {
+    font-size: 0.9rem;
+    color: #122136;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.btn-outline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border: 1px solid #c49a62;
+    border-radius: 100px;
+    background: #c49a62;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(196,154,98,0.35);
+}
+
+/* ===== Product cards carousel (auto-sliding marquee) ===== */
+.products-carousel-wrap {
+    width: 100%;
+    overflow: hidden;
+    padding: 12px 0 28px 0;
+    margin-bottom: 0;
+}
+
+.products-grid.products-marquee {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    will-change: transform;
+    cursor: grab;
+}
+
+.products-grid.products-marquee.dragging {
+    cursor: grabbing;
+}
+
+/* ===== 3D Premium Product Card ===== */
+.product-card {
+    width: 220px;
+    background: #ffffff;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: visible;
+
+    /* 3D layered shadow stack */
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.07),
+        0 4px 8px rgba(0,0,0,0.08),
+        0 10px 22px rgba(0,0,0,0.10),
+        0 22px 40px rgba(0,0,0,0.08),
+        0 2px 0 0 rgba(255,255,255,0.9) inset;
+
+    border: 1px solid rgba(255,255,255,0.85);
+
+    /* subtle tilt depth feel */
+    transform: perspective(600px) rotateX(1.5deg);
+    transform-origin: bottom center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:active {
+    transform: perspective(600px) rotateX(0deg) scale(0.97);
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.06),
+        0 4px 12px rgba(0,0,0,0.10),
+        0 8px 20px rgba(0,0,0,0.09);
+}
+
+/* Glossy top sheen layer */
+.product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background: linear-gradient(
+        160deg,
+        rgba(255,255,255,0.55) 0%,
+        rgba(255,255,255,0.08) 45%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Colored bottom glow matching theme */
+.product-card::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 22px;
+    background: var(--theme-color, #0c182c);
+    filter: blur(18px);
+    opacity: 0.22;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.product-badge-new {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 5px 11px;
+    border-radius: 50px;
+    z-index: 10;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow:
+        0 2px 6px rgba(229,62,62,0.45),
+        0 0 0 1.5px rgba(255,255,255,0.3) inset;
+}
+
+/* ===== Image Zone — deep glossy well ===== */
+.product-card-img-wrap {
+    background:
+        radial-gradient(ellipse at 60% 30%, rgba(255,255,255,0.85) 0%, rgba(240,235,225,0.6) 60%, rgba(210,200,185,0.35) 100%),
+        linear-gradient(145deg, #fdfaf4 0%, #ede8dc 100%);
+    background-size: cover;
+    background-position: center;
+
+    padding: 20px 16px 14px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 175px;
+    border-radius: 22px 22px 0 0;
+    overflow: hidden;
+
+    /* inner depth shadow */
+    box-shadow:
+        inset 0 3px 10px rgba(255,255,255,0.9),
+        inset 0 -10px 20px rgba(0,0,0,0.07);
+}
+
+/* lens flare top-left highlight */
+.product-card-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* subtle bottom fade into card body */
+.product-card-img-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6));
+    pointer-events: none;
+}
+
+.product-card-img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+
+    /* product floating shadow */
+    filter:
+        drop-shadow(0 8px 16px rgba(0,0,0,0.18))
+        drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+}
+
+/* ===== Card Body ===== */
+.product-card-content {
+    padding: 14px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.product-category {
+    font-size: 0.58rem;
+    color: var(--theme-color);
+    font-weight: 800;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    opacity: 0.9;
+}
+
+.product-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0c182c;
+    line-height: 1.25;
+    margin-bottom: 5px;
+}
+
+.product-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+/* ===== Features — pill chips ===== */
+.product-features {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 13px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+
+.feature-icon-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 50px;
+    padding: 4px 7px;
+    flex-shrink: 0;
+}
+
+.feature-icon-item i {
+    font-size: 0.78rem;
+    color: var(--theme-color);
+    flex-shrink: 0;
+}
+
+.feature-icon-item span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.52rem;
+    color: #334155;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1.1;
+}
+
+/* ===== CTA Button ===== */
+.product-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--theme-color) 0%, color-mix(in srgb, var(--theme-color) 75%, #000) 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 50px;
+    margin-top: auto;
+    align-self: stretch;
+    text-align: center;
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.18),
+        0 1px 0 rgba(255,255,255,0.25) inset;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* sheen sweep on button */
+.product-link::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+
+.product-link:active::before {
+    left: 130%;
+}
+
+/* ===== Quick Links ===== */
+.quick-links-section {
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 18px 0 18px;
+}
+
+.quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quick-link-card {
+    display: flex;
+    align-items: center;
+    padding: 15px 16px;
+    gap: 14px;
+    text-decoration: none;
+    color: #0c182c;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.05),
+        0 8px 20px rgba(0,0,0,0.04);
+
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* left color accent bar */
+.quick-link-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3.5px;
+    background: var(--ql-color, #c49553);
+    border-radius: 0 4px 4px 0;
+}
+
+/* shine sweep — same as navbar */
+.quick-link-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -160px;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.75) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: qlShine 4s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 16px;
+}
+
+/* stagger each card's shine so they don't all flash at once */
+.quick-link-card:nth-child(2)::after { animation-delay: 1.3s; }
+.quick-link-card:nth-child(3)::after { animation-delay: 2.6s; }
+
+@keyframes qlShine {
+    0%        { left: -160px; opacity: 0; }
+    5%        { opacity: 1; }
+    35%       { opacity: 1; }
+    40%, 100% { left: calc(100% + 160px); opacity: 0; }
+}
+
+.quick-link-card:active {
+    transform: scale(0.975);
+    box-shadow:
+        0 1px 3px rgba(0,0,0,0.06),
+        0 4px 10px rgba(0,0,0,0.06);
+}
+
+.quick-link-icon-wrap {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #f7f4ef, #ede8df);
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.08),
+        0 1px 0 rgba(255,255,255,0.9) inset;
+}
+
+.quick-link-text {
+    flex: 1;
+}
+
+.quick-link-text h5 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #0c182c;
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+.quick-link-text p {
+    font-size: 0.72rem;
+    color: #8a96a8;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.quick-link-arrow {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f4f1ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.06);
+}

@@ -1,0 +1,66 @@
+<?php
+// Shared event data — placeholder until admin dashboard is built
+$allEvents = [
+    'rajdoot-dealer-meet-2026' => [
+        'title'=>'Rajdoot Dealer Meet 2026',
+        'date'=>'12 Jan 2026',
+        'location'=>'Kathmandu',
+        'desc'=>'Annual gathering of Rajdoot Paints dealers from across Nepal, celebrating growth and unveiling our new product range for the year.',
+        'long_desc'=>'The Rajdoot Dealer Meet 2026 brings together our valued dealer partners from every corner of Nepal for a day of celebration, recognition and forward planning. Attendees will get an exclusive first look at our upcoming product range, hear directly from the leadership team about growth plans for the year ahead, and network with fellow dealers over refreshments. Top-performing dealers will be recognised with special awards for outstanding sales and customer service.',
+        'image'=>'assets/products-clean/tiger-interior-emulsion.png',
+        'badge'=>'Upcoming',
+        'theme_color'=>'#1d7a3c',
+        'gallery'=>[
+            'assets/products-clean/tiger-interior-emulsion.png',
+            'assets/products-clean/tiger-distemper.png',
+            'assets/products-clean/tiger-interior-primer.png',
+            'assets/products-clean/home-protect-emulsion.png',
+        ],
+    ],
+    'colour-trends-workshop' => [
+        'title'=>'Colour Trends Workshop',
+        'date'=>'28 Feb 2026',
+        'location'=>'Pokhara',
+        'desc'=>'A hands-on workshop for painters and contractors exploring the latest colour trends, application techniques and finishing tips.',
+        'long_desc'=>'Join master painters and our in-house colour experts for a full day of practical learning. The Colour Trends Workshop covers the season\'s most in-demand palettes, advanced brush and roller techniques, and troubleshooting common application issues. Live demonstrations will show how to achieve flawless finishes on both interior and exterior surfaces, and every attendee leaves with a take-home colour guide.',
+        'image'=>'assets/products-clean/tiger-exterior-emulsion.png',
+        'badge'=>'',
+        'theme_color'=>'#1a5fb4',
+        'gallery'=>[
+            'assets/products-clean/tiger-exterior-emulsion.png',
+            'assets/products-clean/tiger-cement-primer.png',
+            'assets/products-clean/weather-protect-primer.png',
+        ],
+    ],
+    'monsoon-protection-campaign' => [
+        'title'=>'Monsoon Protection Campaign',
+        'date'=>'15 Apr 2026',
+        'location'=>'Nationwide',
+        'desc'=>'A nationwide awareness drive helping homeowners prepare their walls against monsoon damage with the right primers and topcoats.',
+        'long_desc'=>'Every year heavy monsoon rains take a toll on poorly protected walls. The Monsoon Protection Campaign travels to communities across Nepal with free educational sessions, on-site wall assessments, and special bundle offers on our weatherproofing primers and exterior emulsions. Homeowners and contractors alike are welcome to attend and learn how to safeguard their properties before the rains arrive.',
+        'image'=>'assets/products-clean/weather-block-primer.png',
+        'badge'=>'Featured',
+        'theme_color'=>'#9a1616',
+        'gallery'=>[
+            'assets/products-clean/weather-block-primer.png',
+            'assets/products-clean/weather-protect-primer.png',
+            'assets/products-clean/tiger-cement-primer.png',
+            'assets/products-clean/home-protect-emulsion.png',
+        ],
+    ],
+    'artisan-painter-awards' => [
+        'title'=>'Artisan Painter Awards',
+        'date'=>'30 May 2026',
+        'location'=>'Biratnagar',
+        'desc'=>'Honouring the most skilled painters and contractors who deliver flawless finishes using Rajdoot products across the region.',
+        'long_desc'=>'The Artisan Painter Awards celebrates the craftsmanship of the painters and contractors who bring Rajdoot products to life on walls across the country. Nominees are judged on finish quality, customer satisfaction and creative use of colour. The evening includes an awards ceremony, dinner, and a showcase of standout project photos submitted throughout the year.',
+        'image'=>'assets/products-clean/premium-gloss-enamel.png',
+        'badge'=>'',
+        'theme_color'=>'#1B2A6B',
+        'gallery'=>[
+            'assets/products-clean/premium-gloss-enamel.png',
+            'assets/products-clean/tiger-synthetic-enamel.png',
+            'assets/products-clean/synthetic-enamel.png',
+        ],
+    ],
+];
